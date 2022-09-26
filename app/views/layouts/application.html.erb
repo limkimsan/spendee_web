@@ -10,8 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
     <%= render "layouts/navbar" %>
-    <%= yield %>
+    <div id="page-content">
+      <div class="container mt-4">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
