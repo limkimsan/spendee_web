@@ -1,12 +1,15 @@
-<div class="row mb-4">
-  <div class="col s12">
-    <h3 class="center-align">User Listing</h3>
+<div class="d-flex mb-4">
+  <div class="flex-grow-1">
+    <h3>User Listing</h3>
+  </div>
+  <div>
+    <%= link_to "Create user", new_user_path, class: "btn btn-primary" %>
   </div>
 </div>
 
-<div class="row">
+<div class="row justify-content-between">
   <% @users.each do |user| %>
-    <div class="col s4 m4">
+    <div class="col-3 s3 m3">
       <%= render "user_card", user: user %>
     </div>
   <% end %>
