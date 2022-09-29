@@ -20,19 +20,21 @@
           </div>
         </div>
 
-        <div class="row mt-2">
-          <div class="col s12 input-field">
-            <%= f.label :password, class: "form-label" %>
-            <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+        <% if @user.new_record? %>
+          <div class="row mt-2">
+            <div class="col s12 input-field">
+              <%= f.label :password, class: "form-label" %>
+              <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+            </div>
           </div>
-        </div>
 
-        <div class="row mt-2">
-          <div class="col s12 input-field">
-            <%= f.label :password_confirmation, class: "form-label" %>
-            <%= f.password_field :password_confirmation, placeholder: "Enter your password", class: "form-control" %>
+          <div class="row mt-2">
+            <div class="col s12 input-field">
+              <%= f.label :password_confirmation, class: "form-label" %>
+              <%= f.password_field :password_confirmation, placeholder: "Enter your password", class: "form-control" %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
         <div class="row mt-4 me-0 justify-content-end">
           <div class="col-1">
