@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'pages#home'
   resources :users, except: [:destroy]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
