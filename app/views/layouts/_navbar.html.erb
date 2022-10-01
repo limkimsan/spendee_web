@@ -1,15 +1,19 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid container">
-    <a class="navbar-brand" href="#">Spendee</a>
+    <%= link_to "Spendee", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <%= link_to "Users", root_path, class: "nav-link active" %>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled">Disabled</a>
+        <%#= link_to "Users", users_path, class: "nav-link active" %>
+        <a class="nav-link" href="#">Incomes</a>
+        <a class="nav-link" href="#">Expenses</a>
+        <% if logged_in? %>
+          <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+        <% else %>
+          <%= link_to "Login", login_path, class: "nav-link" %>
+        <% end %>
       </div>
     </div>
   </div>
