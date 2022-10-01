@@ -9,7 +9,11 @@
         <%= link_to "Users", root_path, class: "nav-link active" %>
         <a class="nav-link" href="#">Incomes</a>
         <a class="nav-link" href="#">Expenses</a>
-        <%= link_to "Log in", login_path, class: "nav-link" %>
+        <% if logged_in? %>
+          <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+        <% else %>
+          <%= link_to "Login", login_path, class: "nav-link" %>
+        <% end %>
       </div>
     </div>
   </div>
