@@ -1,0 +1,33 @@
+<div class="container card">
+  <div class="card-body">
+    <h1 class="text-center">Login to Spendee</h1>
+
+    <div class="row">
+      <%#= form_for(@user, as: :session, url: login_path, class: "col s12", local: true) do |f| %>
+      <%= form_with(scope: :session, url: login_path, class: "col s12", local: true) do |f| %>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, placeholder: "Enter your email", autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :password, class: "form-label" %>
+            <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row mt-4 me-0 justify-content-end">
+          <div class="col-1">
+            <%= link_to "Cancel", root_path, class: "btn btn-danger" %>
+          </div>
+          <div class="col-1">
+            <%= f.submit "Log in", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
