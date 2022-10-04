@@ -17,4 +17,13 @@ class User < ApplicationRecord
                     length: { maximum: 105 },
                     format: { with: VALID_EMAIL_REGEX }
   has_secure_password
+
+  enum role: {
+    primary_admin: 0,
+    admin: 1,
+    normal: 2
+  }
+
+  # constant
+  ROLES = [["Admin", "admin"], ["Normal", "normal"]]
 end
