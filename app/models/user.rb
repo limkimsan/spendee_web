@@ -8,6 +8,7 @@
 #  password_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  role            :integer          default("normal")
 #
 class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }
