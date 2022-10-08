@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :require_user, except: [:new, :create]
+  before_action :require_same_user, only: [:show, :edit]
 
   def index
     @users = policy_scope(User)
@@ -10,10 +11,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    authorize User
     @user = User.new
   end
 
   def create
+    authorize User
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -29,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    authorize User
     if @user.update(user_params)
       flash[:success] = "Your account information was successfully updated"
       redirect_to @user
@@ -44,5 +48,11 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      redirect_to current_user
+    end
   end
 end

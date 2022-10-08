@@ -7,8 +7,12 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    !user || user.primary_admin?
+  end
+
   def create?
-    user.primary_admin?
+    new?
   end
 
   def update?
