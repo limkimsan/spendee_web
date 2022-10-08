@@ -45,6 +45,9 @@ gem 'bootstrap', '~> 5.2.1'
 gem "jquery-rails", "~> 4.5.0"
 gem 'sass-rails'
 
+# Permission
+gem "pundit", "~> 2.2"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -66,6 +69,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'annotate'
 end
 
 group :test do

@@ -23,6 +23,13 @@
         <% if @user.new_record? %>
           <div class="row mt-2">
             <div class="col s12 input-field">
+              <%= f.label :role, class: "form-label" %>
+              <%= f.select :role, User::ROLES, {}, { class: "form-select" } %>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col s12 input-field">
               <%= f.label :password, class: "form-label" %>
               <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
             </div>
@@ -38,7 +45,8 @@
 
         <div class="row mt-4 me-0 justify-content-end">
           <div class="col-1">
-            <%= link_to "Cancel", users_path, class: "btn btn-danger" %>
+            <% cancel_url = (!logged_in? && controller.controller_name == "users" && controller.action_name == "new") ? root_path : users_path %>
+            <%= link_to "Cancel", cancel_url, class: "btn btn-danger" %>
           </div>
           <div class="col-1">
             <%= f.button(@user.new_record? ? "Create" : "Update", class: "btn btn-primary") %>
