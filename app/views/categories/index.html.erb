@@ -3,7 +3,7 @@
     <h3>Category Listing</h3>
   </div>
   <div>
-    <%= link_to "Create category", new_user_path, class: "btn btn-primary" %>
+    <%= link_to "Create category", new_category_path, class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -18,9 +18,8 @@
               <span class="badge text-bg-danger"><%= category.transaction_type %></span>
             </div>
           </div>
-
           <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
-          <%= link_to "View profile", category_path(category), class: "btn btn-success" %>
+          <%= link_to "Delete", category_path(category), class: "btn btn-danger" %>
         </div>
       </div>
     </div>
