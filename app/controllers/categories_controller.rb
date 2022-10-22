@@ -14,7 +14,12 @@ class CategoriesController < ApplicationController
 
   def create
     authorize User
-    @category = Category.new(category_params)
+    cate_params = category_params;
+    if category_params[:order] == ""
+      cate_params[:order] = Category.all.length + 1
+    end
+
+    @category = Category.new(cate_params)
     if @category.save
       flash[:success] = "New category is created!"
       redirect_to categories_path
