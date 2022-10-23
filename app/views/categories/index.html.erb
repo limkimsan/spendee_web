@@ -1,0 +1,30 @@
+<div class="d-flex mb-4">
+  <div class="flex-grow-1">
+    <h3>Category Listing</h3>
+  </div>
+  <div>
+    <%= link_to "Create category", new_category_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row">
+  <% @categories.each do |category| %>
+    <div class="col-3 s3 m3 mt-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-row justify-content-between mb-3">
+            <h5 class="card-title">
+              <b><%= category.order %>. </b>
+              <%= category.name %>
+            </h5>
+            <div>
+              <span class="badge text-bg-danger"><%= category.transaction_type %></span>
+            </div>
+          </div>
+          <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
+          <%= link_to "Delete", category_path(category), method: :delete, data: { confirm: "Do you want to delete this category?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
