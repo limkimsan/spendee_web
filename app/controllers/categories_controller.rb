@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :require_admin, only: [:edit]
-  before_action :set_category, only: [:edit, :update]
+  before_action :require_admin, only: [:edit, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
     authorize User
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     authorize User
     cate_params = category_params;
     if category_params[:order] == ""
-      cate_params[:order] = Category.all.length + 1
+      cate_params[:order] = Category.last ? Category.last.order + 1 : 1;
     end
 
     @category = Category.new(cate_params)
@@ -39,6 +39,11 @@ class CategoriesController < ApplicationController
     else
       render 'edit', status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_path
   end
 
   private
