@@ -1,6 +1,9 @@
 class TransactionsController < ApplicationController
+  before_action :set_categories, only: [:new, :edit]
+
   def index
-    @transactions = Transaction.find_by(user_id: current_user)
+    # @transactions = Transaction.find_by(user_id: current_user)
+    @transactions = []
   end
 
   def show
@@ -8,6 +11,18 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    # @categories = Categories.all()
+  end
+
+  def create
+    @transaction = Transaction.new(transaction_params);
+    @transaction.user = current_user
+    if @transaction.save
+      flash[:success] = "Transaction was successfully created"
+      redirect_to transactions_path
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -22,4 +37,17 @@ class TransactionsController < ApplicationController
   def set_transaction
     @transaction = Transaction.find(params[:id])
   end
+
+  def set_categories
+    @income_categories = Category.where(transaction_type: Category::TRANSACTION_TYPES[0]).collect { |c| [c.name, c.id] }
+    @expense_categories = Category.where(transaction_type: Category::TRANSACTION_TYPES[1]).collect { |c| [c.name, c.id] }
+  end
+
+  def transaction_params
+    params.require(:transaction).permit(:amount, :currency_type, :note, :transaction_type, :transaction_date, :category_id)
+  end
+
+  # def require_same_user
+  #   current_user = user
+  # end
 end

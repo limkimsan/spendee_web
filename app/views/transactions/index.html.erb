@@ -1,0 +1,24 @@
+<div class="d-flex mb-4">
+  <div class="flex-grow-1">
+    <h3>Transactions</h3>
+  </div>
+  <div>
+    <%= link_to "Add new transaction", new_transaction_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row">
+  <% @transactions.each do |transaction| %>
+    <div class="col-3 s3 m3 mt-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-flow justify-content-between mb-3">
+            <h5 class="card-title">
+              <b><%= transaction.amount %></b>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

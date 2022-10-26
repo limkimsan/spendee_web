@@ -1,7 +1,15 @@
-<div class="container card">
-  <div class="card-body">
-    <h1 class="text-center">Login to Spendee</h1>
-
-    <%= render "shared/login_form" %>
-  </div>
+<div class="row">
+  <% if logged_in? %>
+    <%= render "pages/catalogs" %>
+  <% else %>
+    <div class="col s6 align-self-center">
+      <h1 class="text-center">Welcome to Spendee</h1>
+      <h4 class="text-center">Your personal spending recorder</h4>
+    </div>
+    <div class="col s6 card">
+      <div class="card-body">
+        <%= render "shared/login_form" %>
+      </div>
+    </div>
+  <% end %>
 </div>

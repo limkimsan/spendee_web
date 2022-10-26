@@ -1,0 +1,83 @@
+<%= render "shared/errors", obj: @transaction %>
+
+<script>
+  $("#expense_category").hide()
+  $('#transaction_type_selection').change(function() {
+    const transactionType = $('#transaction_type_selection').val();
+    $('#transcation_type').value = transactionType;
+    if (transactionType == "expense") {
+      $("#expense_category").show()
+      $("#income_category").hide()
+    }
+    else {
+      $("#expense_category").hide()
+      $("#income_category").show()
+    }
+  })
+</script>
+
+<div class="container card" id="transaction_form">
+  <div class="card-body">
+    <h1 class="card-title text-center"><%= @transaction.new_record? ? "Create transaction" : "Edit your transaction" %></h1>
+
+    <div class="row">
+      <%= form_for(@transaction, html: {class: "col s12"}) do |f| %>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :amount, class: "form-label" %>
+            <%= f.text_field :amount, placeholder: "Enter the amount", class: "form-control" %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :currency_type, class: "form-label" %>
+            <%= f.select :currency_type, Transaction::CURRENCY_TYPES, {}, { class: "form-select" } %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :transaction_date, class: "form-label" %>
+            <%= f.date_field :transaction_date, class: "form-control" %>
+            <%#= f.date_select(:transaction_date, order: [:day, :month, :year]) %>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col s12">
+            <label class="form-label">Category type:</label>
+            <select class="form-select" id="transaction_type_selection">
+              <% Category::TRANSACTION_TYPES.map do |transaction_type| %>
+                <option value="<%= transaction_type[1] %>"><%= transaction_type[0] %></option>
+              <% end %>
+            </select>
+            <input type="hidden" id="transaction_type" name="transaction[transaction_type]" value="expense" />
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col s12">
+            <%= f.label :category, class: "form-label" %>
+            <%= f.select :category_id, @expense_categories, {}, {  placeholder: "Select category", class: "form-select", id: "expense_category" } %>
+            <%= f.select :category_id, @income_categories, {}, { placeholder: "Select category", class: "form-select", id: "income_category" } %>
+            <input type="hidden" id="category" value=<% @income_categories[0] %> />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :note, class: "form-label" %>
+            <%= f.text_area :note, placeholder: "Enter your note", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row mt-4 me-0 justify-content-end">
+          <div class="col-1">
+            <%= link_to "Cancel", transactions_path, class: "btn btn-danger" %>
+          </div>
+          <div class="col-1">
+            <%= f.button(@transaction.new_record? ? "Create" : "Update", class: "btn btn-primary") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
