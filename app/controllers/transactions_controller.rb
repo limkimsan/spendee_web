@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 
   def index
     # @transactions = Transaction.find_by(user_id: current_user)
-    @transactions = []
+    @transactions = Transaction.all
   end
 
   def show

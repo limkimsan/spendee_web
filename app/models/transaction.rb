@@ -24,6 +24,12 @@ class Transaction < ApplicationRecord
     usd: 1
   }
 
+  enum transaction_type: {
+    income: 0,
+    expense: 1
+  }
+
   #constant
   CURRENCY_TYPES = [["Riel", "khr"], ["USD", "usd"]]
+  TRANSACTION_TYPES = [["Income", "income"], ["Expense", "expense"]]
 end

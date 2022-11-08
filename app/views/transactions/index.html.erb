@@ -14,8 +14,18 @@
         <div class="card-body">
           <div class="d-flex flex-flow justify-content-between mb-3">
             <h5 class="card-title">
-              <b><%= transaction.amount %></b>
+              <b>
+                <%= transaction.currency_type == "rield" ? "Riel" : "USD" %> <%= transaction.amount %>
+              </b>
             </h5>
+            <div><span class="badge text-bg-<%= transaction.transaction_type == "income" ? "success" : "danger" %>"><%= transaction.transaction_type %></span></div>
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted"><%= transaction.category.name %></h6>
+          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Note: <%= transaction.note %></div>
+
+          <div class="mt-2">
+            <%= link_to "Edit", edit_transaction_path(transaction), class: "btn btn-primary" %>
+            <%= link_to "View profile", transaction_path(transaction), class: "btn btn-success" %>
           </div>
         </div>
       </div>
