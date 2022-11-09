@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
+  before_action :set_transaction, only: [:edit, :update]
 
   def index
     # @transactions = Transaction.find_by(user_id: current_user)
@@ -31,6 +32,12 @@ class TransactionsController < ApplicationController
 
   def update
     authorize User
+    if @transaction.update(transaction_params)
+      flash[:success] = "The transaction was successfully updated"
+      redirect_to transactions_path
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   private

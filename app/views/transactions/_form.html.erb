@@ -1,21 +1,5 @@
 <%= render "shared/errors", obj: @transaction %>
 
-<script>
-  $("#expense_category").hide()
-  $('#transaction_type_selection').change(function() {
-    const transactionType = $('#transaction_type_selection').val();
-    $('#transcation_type').value = transactionType;
-    if (transactionType == "expense") {
-      $("#expense_category").show()
-      $("#income_category").hide()
-    }
-    else {
-      $("#expense_category").hide()
-      $("#income_category").show()
-    }
-  })
-</script>
-
 <div class="container card" id="transaction_form">
   <div class="card-body">
     <h1 class="card-title text-center"><%= @transaction.new_record? ? "Create transaction" : "Edit your transaction" %></h1>
@@ -44,13 +28,13 @@
 
         <div class="row mt-3">
           <div class="col s12">
-            <label class="form-label">Category type:</label>
+            <label class="form-label">Type:</label>
             <select class="form-select" id="transaction_type_selection">
               <% Category::TRANSACTION_TYPES.map do |transaction_type| %>
                 <option value="<%= transaction_type[1] %>"><%= transaction_type[0] %></option>
               <% end %>
             </select>
-            <input type="hidden" id="transaction_type" name="transaction[transaction_type]" value="expense" />
+            <input type="hidden" id="transaction_type" name="transaction[transaction_type]" value="" />
           </div>
         </div>
         <div class="row mt-3">
@@ -58,7 +42,7 @@
             <%= f.label :category, class: "form-label" %>
             <%= f.select :category_id, @expense_categories, {}, {  placeholder: "Select category", class: "form-select", id: "expense_category" } %>
             <%= f.select :category_id, @income_categories, {}, { placeholder: "Select category", class: "form-select", id: "income_category" } %>
-            <input type="hidden" id="category" value=<% @income_categories[0] %> />
+            <input type="hidden" id="transaction_category" value="" />
           </div>
         </div>
 
