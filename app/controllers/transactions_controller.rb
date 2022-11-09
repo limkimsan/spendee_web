@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_categories, only: [:new, :edit]
+  before_action :set_categories, only: [:new, :edit, :create, :update]
   before_action :set_transaction, only: [:edit, :update]
 
   def index
