@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_categories, only: [:new, :edit, :create, :update]
-  before_action :set_transaction, only: [:show, :edit, :update]
+  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
     # @transactions = Transaction.find_by(user_id: current_user)
@@ -37,6 +37,11 @@ class TransactionsController < ApplicationController
     else
       render 'edit', status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @transaction.destroy
+    redirect_to transactions_path
   end
 
   private
