@@ -1,0 +1,18 @@
+<div class="container card">
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-9">
+        <h5 class="card-title">
+          <b><%= @transaction.currency_type == "rield" ? "Riel" : "USD" %> <%= @transaction.amount %></b>
+        </h5>
+        <span style="color: #ababab;">Note:</span> <%= @transaction.note %>
+      </div>
+      <div class="col-3 d-flex align-items-end flex-column">
+        <div><span class="badge text-bg-<%= @transaction.transaction_type == "income" ? "success" : "danger" %>"><%= @transaction.transaction_type %></span></div>
+        <div class="mt-1"><%= @transaction.category.name %></div>
+        <div class="mt-1"><%= @transaction.transaction_date.strftime("%d/%m/%Y") %></div>
+      </div>
+    </div>
+    <%= link_to "Edit", edit_transaction_path(@transaction), class: "btn btn-primary" %>
+  </div>
+</div>

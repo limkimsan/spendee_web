@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_categories, only: [:new, :edit, :create, :update]
-  before_action :set_transaction, only: [:edit, :update]
+  before_action :set_transaction, only: [:show, :edit, :update]
 
   def index
     # @transactions = Transaction.find_by(user_id: current_user)
@@ -12,7 +12,6 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    # @categories = Categories.all()
   end
 
   def create
