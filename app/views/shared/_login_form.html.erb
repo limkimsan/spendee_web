@@ -15,26 +15,16 @@
       </div>
     </div>
 
-    <% if current_controller?("pages")%>
-      <div class="d-grid gap-2">
-        <%= f.submit "Log in", class: "btn btn-primary mt-4" %>
+    <div class="d-grid gap-2">
+      <%= f.submit "Log in", class: "btn btn-primary mt-4" %>
 
-        <div class="mt-3" style="background-color: lightgray; height: 0.5px;">
-        </div>
+      <div class="mt-3 row justify-content-center" style="background-color: lightgray; height: 0.5px; position: relative;">
+        <div style="background-color: white; width: 50px; position: absolute; top: -12px; color: lightgray;">OR</div>
       </div>
+    </div>
 
-      <div class="text-center">
-        <%= link_to "Create an account", new_user_path, class: "btn btn-success mt-4" %>
-      </div>
-    <% else %>
-      <div class="row mt-4 me-0 justify-content-end">
-        <div class="col-1">
-          <%= link_to "Cancel", root_path, class: "btn btn-danger" %>
-        </div>
-        <div class="col-1">
-          <%= f.submit "Log in", class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
+    <div class="text-center">
+      <%= link_to "Create an account", new_user_path, class: "btn btn-success mt-4" %>
+    </div>
   <% end %>
   </div>

@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     redirect_to root_path
   end
+
+  def require_same_user
+    if current_user != User.find(params[:id])
+      redirect_to current_user
+    end
+  end
 end

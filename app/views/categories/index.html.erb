@@ -18,7 +18,7 @@
               <%= category.name %>
             </h5>
             <div>
-              <span class="badge text-bg-danger"><%= category.transaction_type %></span>
+              <span class="badge text-bg-<%= category.transaction_type == 'income' ? "success" : "danger" %>"><%= category.transaction_type %></span>
             </div>
           </div>
           <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>

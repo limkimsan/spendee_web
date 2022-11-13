@@ -1,0 +1,103 @@
+<script>
+  $(document).ready(function(){
+    if ($("#transaction_type").val() == "expense")
+      $("#income_category").hide();
+    else
+      $("#expense_category").hide();
+
+    $("#transaction_type_selection").val($("#transaction_type").val())
+    $("#transaction_category").val($("#income_category").val())
+
+    $("#transaction_type_selection").change(function() {
+      const transactionType = $("#transaction_type_selection").val();
+      $("#transaction_type").val(transactionType);
+      if (transactionType == "expense") {
+        $("#expense_category").show()
+        $("#income_category").hide()
+        $("#transaction_category").val($("#expense_category").val())
+      }
+      else {
+        $("#expense_category").hide()
+        $("#income_category").show()
+        $("#transaction_category").val($("#income_category").val())
+      }
+    })
+
+    $("#expense_category").change(() => {
+      console.log('expense category = ', $("#expense_category").val())
+      $("#transaction_category").val($("#expense_category").val())
+    })
+
+    $("#income_category").change(() => {
+      $("#transaction_category").val($("#income_category").val())
+    })
+  });
+</script>
+
+<%= render "shared/errors", obj: @transaction %>
+
+<div class="container card" id="transaction_form">
+  <div class="card-body">
+    <h1 class="card-title text-center"><%= @transaction.new_record? ? "Create transaction" : "Edit your transaction" %></h1>
+
+    <div class="row">
+      <%= form_for(@transaction, html: {class: "col s12"}) do |f| %>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :amount, class: "form-label" %>
+            <%= f.text_field :amount, placeholder: "Enter the amount", class: "form-control" %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :currency_type, class: "form-label" %>
+            <%= f.select :currency_type, Transaction::CURRENCY_TYPES, {}, { class: "form-select" } %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :transaction_date, class: "form-label" %>
+            <%= f.date_field :transaction_date, class: "form-control" %>
+            <%#= f.date_select(:transaction_date, order: [:day, :month, :year]) %>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col s12">
+            <label class="form-label">Type:</label>
+            <select class="form-select" id="transaction_type_selection">
+              <% Category::TRANSACTION_TYPES.map do |transaction_type| %>
+                <option value="<%= transaction_type[1] %>"><%= transaction_type[0] %></option>
+              <% end %>
+            </select>
+            <%= f.hidden_field :transaction_type, value: @transaction.transaction_type, id: "transaction_type" %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col s12">
+            <%= f.label :category, class: "form-label" %>
+            <%= f.select :category_id, @expense_categories, {}, {  placeholder: "Select category", class: "form-select", id: "expense_category" } %>
+            <%= f.select :category_id, @income_categories, {}, { placeholder: "Select category", class: "form-select", id: "income_category" } %>
+            <%= f.hidden_field :category_id, value: @transaction.category_id, id: "transaction_category" %>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :note, class: "form-label" %>
+            <%= f.text_area :note, placeholder: "Enter your note", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row mt-4 me-0 justify-content-end">
+          <div class="col-1">
+            <%= link_to "Cancel", transactions_path, class: "btn btn-danger" %>
+          </div>
+          <div class="col-1">
+            <%= f.button(@transaction.new_record? ? "Create" : "Update", class: "btn btn-primary") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
