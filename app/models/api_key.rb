@@ -29,8 +29,8 @@ class ApiKey < ApplicationRecord
 
   private
   def generate_api_key
-    begin
+    # begin
       self.api_key = SecureRandom.hex
-    end while self.class.exists?(api_key:)
+    # end while self.class.exists?(api_key:)
   end
 end

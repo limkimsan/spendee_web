@@ -1,0 +1,31 @@
+<div class="d-flex mb-4">
+  <div class="flex-grow-1">
+    <h3>API key Listing</h3>
+  </div>
+  <div>
+    <%= link_to "Create API key", new_api_key_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class="row">
+  <% @api_keys.each do |api_key| %>
+    <div class="col-3 s3 m3 mt-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex flex-row justify-content-between mb-3">
+            <h5 class="card-title">
+              <%= api_key.name %>
+            </h5>
+            <div>
+              <span class="badge text-bg-<%= api_key.archived ? "Archived" : "" %>">
+                <%= api_key.archived ? "Archived" : "Available" %>
+              </span>
+            </div>
+          </div>
+          <%#= link_to "Edit", edit_api_key_path(api_key), class: "btn btn-primary" %>
+          <%#= link_to "Delete", api_key_path(api_key), method: :delete, data: { confirm: "Do you want to delete this category?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
