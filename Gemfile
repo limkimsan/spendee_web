@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.2.1'
 gem "jquery-rails", "~> 4.5.0"
 gem 'sass-rails'
+gem "font-awesome-sass", "~> 6.2.1"
 
 # Permission
 gem "pundit", "~> 2.2"
