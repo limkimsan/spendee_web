@@ -1,0 +1,41 @@
+<div class="d-flex mb-4">
+  <div class="flex-grow-1">
+    <h3>API key Listing</h3>
+  </div>
+  <div>
+    <%= link_to "Create API key", new_api_key_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<%= render "nav_tabs" %>
+
+<div style="background-color: white; border-radius: 15px; padding-left: 16px; padding-right: 16px; margin-top: 20px;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Key</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @api_keys.each_with_index do |api_key, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= api_key.name %></td>
+          <td><%= api_key.api_key %></td>
+          <td>
+            <span class="badge text-bg-<%= api_key.actived ? "success" : "danger" %>">
+              <%= api_key.actived ? "Available" : "Deactivated" %>
+            </span>
+          </td>
+          <td class="text-end">
+            <%= render "action_buttons", api_key: api_key %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

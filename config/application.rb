@@ -18,5 +18,6 @@ module SpendeeWeb
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.paths["config/routes.rb"] << Rails.root.join("config/routes/api.rb")
   end
 end

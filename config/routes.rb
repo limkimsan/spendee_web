@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  resources :api_keys do
+    member do
+      put :archive
+      put :restore
+    end
+  end
 end

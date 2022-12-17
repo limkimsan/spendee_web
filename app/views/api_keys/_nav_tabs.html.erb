@@ -1,0 +1,10 @@
+<ul class="nav nav-pills">
+  <% active_color = params[:archived].blank? ? "white !important;" : "black !important;" %>
+  <% archived_color = params[:archived].present? ? "white !important;" : "black !important;" %>
+  <li class="nav-item">
+    <%= link_to "Active", api_keys_path, class: "nav-link #{'active' if params[:archived].blank?}", style: "color: #{active_color}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Archived", api_keys_path(archived: true), class: "nav-link #{'active' if params[:archived].present?}", style: "color: #{archived_color}" %>
+  </li>
+</ul>

@@ -9,6 +9,7 @@
         <% if logged_in? && current_user.primary_admin? %>
           <%= link_to "Users", users_path, class: "nav-link active" %>
           <%= link_to "Categories", categories_path, class: "nav-link active" %>
+          <%= link_to "API Keys", api_keys_path, class: "nav-link" %>
         <% end %>
         <%= link_to "Transactions", transactions_path, class: "nav-link" %>
         <% if logged_in? %>

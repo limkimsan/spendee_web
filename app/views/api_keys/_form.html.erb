@@ -1,0 +1,27 @@
+<%#= render "shared/errors", obj: @api_key %>
+
+<div class="container card">
+  <div class="card-body">
+    <h1 class="card-title text-center"><%= @api_key.new_record? ? "Create API key" : "Edit API key" %></h1>
+
+    <div class="row">
+      <%= form_for(@api_key, html: {class: "col s12"}) do |f| %>
+        <div class="row mt-2">
+          <div class="col s12 input-field">
+            <%= f.label :name, class: "form-label" %>
+            <%= f.text_field :name, placeholder: "Enter API key name", autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row mt-4 me-0 justify-content-end">
+          <div class="col-1">
+            <%= link_to "Cancel", api_keys_path, class: "btn btn-danger" %>
+          </div>
+          <div class="col-1">
+            <%= f.button(@api_key.new_record? ? "Create" : "Update", class: "btn btn-primary") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
