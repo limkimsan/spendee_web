@@ -11,7 +11,7 @@ class ApiKeyPolicy < ApplicationPolicy
     user.primary_admin?
   end
 
-  def update
+  def update?
     create?
   end
 
