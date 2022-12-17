@@ -4,6 +4,7 @@ class CreateApiKeys < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :api_key
       t.boolean :actived, default: true
+      t.datetime :deleted_at
       t.integer :user_id
       t.timestamps
     end

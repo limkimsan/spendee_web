@@ -7,7 +7,9 @@
   </div>
 </div>
 
-<div style="background-color: white; border-radius: 15px; padding-left: 16px; padding-right: 16px;">
+<%= render "nav_tabs" %>
+
+<div style="background-color: white; border-radius: 15px; padding-left: 16px; padding-right: 16px; margin-top: 20px;">
   <table class="table">
     <thead>
       <tr>
@@ -21,7 +23,7 @@
     <tbody>
       <% @api_keys.each_with_index do |api_key, index| %>
         <tr>
-          <th scope="row"><%= index %></th>
+          <th scope="row"><%= index + 1 %></th>
           <td><%= api_key.name %></td>
           <td><%= api_key.api_key %></td>
           <td>
@@ -33,8 +35,18 @@
             <%= link_to edit_api_key_path(api_key), class: "btn btn-primary" do %>
               <%= icon('fa-solid', 'pen-to-square')%>
             <% end %>
-            <%= link_to api_key_path(api_key), method: :delete, data: { confirm: "Do you want to delete this category?" }, class: "btn btn-danger" do %>
-              <%= icon('fa-solid', 'trash')%>
+            <% if api_key.deleted? %>
+              <%= link_to restore_api_key_path(api_key), method: :put, class: "btn btn-success" do %>
+                <%= icon('fa-solid', 'rotate-right', style: 'color: white') %>
+              <% end %>
+
+              <%= link_to api_key_path(api_key), method: :delete, data: { confirm: "Do you want to delete this API key?" }, class: "btn btn-danger" do %>
+                <%= icon('fa-solid', 'trash')%>
+              <% end %>
+            <% else %>
+              <%= link_to archive_api_key_path(api_key), method: :put, data: { confirm: "Do you want to archive this API key?" }, class: "btn btn-warning" do %>
+                <%= icon('fa-solid', 'box-archive', style: 'color: white') %>
+              <% end %>
             <% end %>
           </td>
         </tr>

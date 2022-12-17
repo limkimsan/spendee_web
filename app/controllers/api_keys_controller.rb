@@ -2,7 +2,7 @@ class ApiKeysController < ApplicationController
   before_action :set_api_key, only: [:edit, :update, :archive]
 
   def index
-    @api_keys = ApiKey.all
+    @api_keys = authorize ApiKey.filter(filter_params)
   end
 
   def new
@@ -42,19 +42,18 @@ class ApiKeysController < ApplicationController
 
   def restore
     @api_key = authorize ApiKey.only_deleted.find(params[:id])
-    @api_key.restore
+    @api_key.recover
 
     redirect_to api_keys_url, notice: "API key #{@api_key.name} was successfully restored."
   end
 
   def destroy
     @api_key = authorize ApiKey.only_deleted.find(params[:id])
-    @api_key.really_destroy!
+    @api_key.destroy_fully!
 
     respond_to do |format|
-      # format.html { redirect_to api_keys_url(archived: true), notice: "API key #{@api_key.name} was successfully destroyed." }
-      format.html { redirect_to api_keys_url, notice: "API key #{@api_key.name} was successfully destroyed." }
-      # format.turbo_stream { redirect_to api_keys_url, status: :see_other, notice: "API key was succesfully destroyed." }
+      format.html { redirect_to api_keys_url(archived: true), notice: "API key #{@api_key.name} was successfully destroyed." }
+      # format.turbo_stream { redirect_to api_keys_url, status: :see_other, notice: "API key was succesfully destroyed." }     #Install turbo-rails gem in order to use
     end
   end
 
@@ -65,8 +64,7 @@ class ApiKeysController < ApplicationController
   end
 
   def filter_params
-    # params.permit(:name, :archived)
-    params.permit(:name, :actived)
+    params.permit(:name, :archived)
   end
 
   def set_api_key

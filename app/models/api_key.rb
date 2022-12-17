@@ -6,11 +6,14 @@
 #  name       :string
 #  api_key    :string
 #  actived    :boolean          default(TRUE)
+#  deleted_at :datetime
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class ApiKey < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :user
 
   before_create :generate_api_key
@@ -22,15 +25,15 @@ class ApiKey < ApplicationRecord
 
   def self.filter(params)
     scope = all
-    scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}") if params[:name].present?
-    scope = scope.only_deleted if params[:archived] = "true"
+    # scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?
+    scope = scope.only_deleted if params[:archived] == "true"
     scope
   end
 
   private
   def generate_api_key
-    # begin
+    begin
       self.api_key = SecureRandom.hex
-    # end while self.class.exists?(api_key:)
+    end while self.class.exists?(api_key: self.api_key)
   end
 end

@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_164958) do
     t.string "name"
     t.string "api_key"
     t.boolean "actived", default: true
+    t.datetime "deleted_at"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

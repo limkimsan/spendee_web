@@ -1,6 +1,6 @@
 class ApiKeyPolicy < ApplicationPolicy
   def index?
-    user.primary_user?
+    user.primary_admin?
   end
 
   def show?
