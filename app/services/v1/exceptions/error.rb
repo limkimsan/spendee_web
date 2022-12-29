@@ -4,7 +4,7 @@ module V1
       attr_reader :status
 
       def to_json(_options = {})
-        { errors: }.to_json
+        { errors: errors }.to_json
       end
     end
   end

@@ -11,7 +11,7 @@
     <%= icon('fa-solid', 'pen-to-square')%>
   <% end %>
   <%= link_to api_key_path(api_key, api_key: {actived: !api_key.actived}), method: :put, class: "btn btn-info" do %>
-    <%= icon("fa-solid", api_key.actived? ? "eye" : "eye-slash") %>
+    <%= icon("fa-solid", api_key.actived? ? "eye" : "eye-slash", style: "color: white") %>
   <% end %>
   <%= link_to archive_api_key_path(api_key), method: :put, data: { confirm: "Do you want to archive this API key?" }, class: "btn btn-warning" do %>
     <%= icon('fa-solid', 'box-archive', style: 'color: white') %>
