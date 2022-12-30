@@ -27,4 +27,11 @@ class User < ApplicationRecord
 
   # constant
   ROLES = [["Admin", "admin"], ["Normal", "normal"]]
+
+  # the authenticate method
+  def authenticate(email, password)
+    @user = User.find_by(email: email, password: password)
+
+    raise AuthenticationError unless @user
+  end
 end
