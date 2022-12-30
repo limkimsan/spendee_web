@@ -1,3 +1,0 @@
-# class AuthenticateUser < BaseService
-
-# end
