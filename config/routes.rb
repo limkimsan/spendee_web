@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  use_doorkeeper
+
   resources :api_keys do
     member do
       put :archive
