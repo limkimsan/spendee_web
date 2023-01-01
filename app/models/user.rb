@@ -25,13 +25,16 @@ class User < ApplicationRecord
     normal: 2
   }
 
+  has_many :access_grants,
+            class_name: 'Doorkeeper::AccessGrant',
+            foreign_key: :resource_owner_id,
+            dependent: :destroy
+
+  has_many :access_tokens,
+            class_name: 'Doorkeeper::AccessToken',
+            foreign_key: :resource_owner_id,
+            dependent: :destroy
+
   # constant
   ROLES = [["Admin", "admin"], ["Normal", "normal"]]
-
-  # the authenticate method
-  def authenticate(email, password)
-    @user = User.find_by(email: email, password: password)
-
-    raise AuthenticationError unless @user
-  end
 end

@@ -5,7 +5,7 @@ module Api
     protect_from_forgery with: :null_session
 
     before_action :doorkeeper_authorize!
-    before_action :restrict_access, except: [:routing_error]
+    # before_action :restrict_access, except: [:routing_error]
 
     rescue_from Exception, with: :handling_exceptions
     rescue_from ActionController::ParameterMissing, with: :render_parameter_missing
@@ -18,11 +18,11 @@ module Api
     end
 
     private
-    def restrict_access
-      api_key = ApiKey.find_by(api_key: auth_apikey)
+    # def restrict_access
+    #   api_key = ApiKey.find_by(api_key: auth_apikey)
 
-      raise ::V1::Exceptions::AuthenticationError.new, "authentication error" unless api_key&.actived?
-    end
+    #   raise ::V1::Exceptions::AuthenticationError.new, "authentication error" unless api_key&.actived?
+    # end
 
     def auth_apikey
       pattern = /^Apikey /
