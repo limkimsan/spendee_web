@@ -49,6 +49,8 @@ gem "font-awesome-sass", "~> 6.2.1"
 # Oauth authentication
 gem "doorkeeper", "~> 5.6.2"
 
+gem "active_model_serializers", "~> 0.10.13"
+
 # soft delete
 gem 'acts_as_paranoid'
 

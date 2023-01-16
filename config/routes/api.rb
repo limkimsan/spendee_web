@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         post '/', to: "registrations#create", as: :user_registration
       end
       resources :transactions
+      resources :categories, only: [:index]
     end
   end
 end
