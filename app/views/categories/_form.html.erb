@@ -27,6 +27,24 @@
           </div>
         </div>
 
+        <div class="row mt-3">
+          <div class="col-9 input-field">
+            <%= f.label :icon, class: "form-label" %>
+            <%= f.text_field :icon, placeholder: "Enter icon name", class: "form-control" %>
+          </div>
+          <div class="row col-3">
+            <div class="col-4">
+              <%= f.label "Icon color", class: "form-label" %><br/>
+              <%= f.color_field :icon_color %>
+            </div>
+
+            <div class="col-8">
+              <%= f.label "Background color", class: "form-label" %><br/>
+              <%= f.color_field :bg_color, value: @category.new_record? ? "#ffffff" : @category.bg_color %>
+            </div>
+          </div>
+        </div>
+
         <div class="row mt-4 me-0 justify-content-end">
           <div class="col-1">
             <% cancel_url = (!logged_in? && controller.controller_name == "users" && controller.action_name == "new") ? root_path : categories_path %>

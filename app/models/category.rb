@@ -8,6 +8,10 @@
 #  order            :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  icon             :string
+#  icon_type        :string
+#  icon_color       :string
+#  bg_color         :string
 #
 class Category < ApplicationRecord
   validates :name, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_30_100409) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_175011) do
   create_table "api_keys", force: :cascade do |t|
     t.string "name"
     t.string "api_key"
@@ -27,6 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_100409) do
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "icon"
+    t.string "icon_type"
+    t.string "icon_color"
+    t.string "bg_color"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

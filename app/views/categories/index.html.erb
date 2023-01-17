@@ -13,10 +13,18 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex flex-row justify-content-between mb-3">
-            <h5 class="card-title">
-              <b><%= category.order %>. </b>
-              <%= category.name %>
-            </h5>
+            <div>
+              <h5 class="card-title">
+                <b><%= category.order %>. </b>
+                <%= category.name %>
+              </h5>
+
+              <% icon_color = category.icon_color ? category.icon_color : '#000000' %>
+              <% bg_color = category.bg_color ? category.bg_color : 'gray' %>
+              <%= content_tag :div, class: "d-flex justify-content-center align-items-center", style: "width: 40px; height: 40px; border-radius: 10px; background-color: #{bg_color}; color: #{icon_color}" do %>
+                Icon
+              <% end %>
+            </div>
             <div>
               <span class="badge text-bg-<%= category.transaction_type == 'income' ? "success" : "danger" %>"><%= category.transaction_type %></span>
             </div>
