@@ -35,12 +35,12 @@
           <div class="row col-3">
             <div class="col-4">
               <%= f.label "Icon color", class: "form-label" %><br/>
-              <%= f.color_field :icon_color%>
+              <%= f.color_field :icon_color %>
             </div>
 
             <div class="col-8">
               <%= f.label "Background color", class: "form-label" %><br/>
-              <%= f.color_field :bg_color, value: '#ffffff' %>
+              <%= f.color_field :bg_color, value: @category.new_record? ? "#ffffff" : @category.bg_color %>
             </div>
           </div>
         </div>
