@@ -28,11 +28,15 @@
         </div>
 
         <div class="row mt-3">
-          <div class="col-9 input-field">
+          <div class="col-4 input-field">
             <%= f.label :icon, class: "form-label" %>
             <%= f.text_field :icon, placeholder: "Enter icon name", class: "form-control" %>
           </div>
-          <div class="row col-3">
+          <div class="col-4 input-field">
+            <%= f.label :icon_type, class: "form-label" %>
+            <%= f.text_field :icon_type, placeholder: "Enter icon type", class: "form-control" %>
+          </div>
+          <div class="row col-4">
             <div class="col-4">
               <%= f.label "Icon color", class: "form-label" %><br/>
               <%= f.color_field :icon_color %>

@@ -14,5 +14,5 @@
 #  bg_color         :string
 #
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :transaction_type, :order, :icon, :icon_color, :bg_color
+  attributes :id, :name, :transaction_type, :order, :icon, :icon_type, :icon_color, :bg_color
 end
