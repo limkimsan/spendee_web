@@ -16,6 +16,15 @@ module Api
         end
       end
 
+      def update
+        @transaction = Transaction.find(params[:id])
+        if @transaction.update(transaction_params)
+          render JSON: @transcation, status: :ok
+        else
+          render json: { errors: @transcation.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
       def transaction_params
         params.require(:transaction).permit(:amount, :currency_type, :note, :transaction_type, :transaction_date, :category_id, :user_id)
