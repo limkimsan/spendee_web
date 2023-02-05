@@ -7,11 +7,12 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    current_user || warden.authenticate!(scope: :user)
+    # raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
+    # current_user || warden.authenticate!(scope: :user)
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
+    User.find_by(id: session[:user_id]) || redirect_to(root_path)
   end
 
   resource_owner_from_credentials do
@@ -21,7 +22,14 @@ Doorkeeper.configure do
       password: params[:password]
     }
 
+    begin
+      authenticate_user = AuthenticateUser.call(attrs: attrs)
+      puts authenticate_user
 
+      authenticate_user.user
+    rescue UnauthorizedError
+      nil
+    end
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -304,7 +312,7 @@ Doorkeeper.configure do
   #
   # You can completely disable this feature with:
   #
-  # allow_blank_redirect_uri false
+  allow_blank_redirect_uri true
   #
   # Or you can define your custom check:
   #
