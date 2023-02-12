@@ -26,7 +26,7 @@ module Api
 
         private
         def user_params
-          params.permit(:email, :password, :name, :client_id)
+          params.permit(:email, :password, :name, :client_id).merge!({role: 2})
         end
       end
     end
