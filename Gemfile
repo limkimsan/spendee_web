@@ -47,7 +47,7 @@ gem 'sass-rails'
 gem "font-awesome-sass", "~> 6.2.1"
 
 # Oauth authentication
-gem "doorkeeper", "~> 5.6.2"
+gem "doorkeeper"
 
 gem "active_model_serializers", "~> 0.10.13"
 
