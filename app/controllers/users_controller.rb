@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     authorize User
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
+      session[:user_uuid] = @user.id
       flash[:success] = "Welcome to Spendee #{@user.name}, you have successfully create a new account"
       redirect_to users_path
     else

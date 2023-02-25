@@ -2,7 +2,7 @@
 #
 # Table name: api_keys
 #
-#  id         :integer          not null, primary key
+#  id         :uuid             not null, primary key
 #  name       :string
 #  api_key    :string
 #  actived    :boolean          default(TRUE)

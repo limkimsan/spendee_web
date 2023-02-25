@@ -2,7 +2,7 @@
 #
 # Table name: categories
 #
-#  id               :integer          not null, primary key
+#  id               :uuid             not null, primary key
 #  name             :string
 #  transaction_type :integer
 #  order            :integer

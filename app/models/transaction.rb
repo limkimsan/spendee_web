@@ -2,14 +2,14 @@
 #
 # Table name: transactions
 #
-#  id               :integer          not null, primary key
+#  id               :uuid             not null, primary key
 #  amount           :float
 #  currency_type    :integer
 #  note             :string
 #  transaction_type :integer
 #  transaction_date :date
-#  user_id          :integer
-#  category_id      :integer
+#  user_id          :uuid
+#  category_id      :uuid
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
