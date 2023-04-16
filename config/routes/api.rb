@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       end
       resources :transactions
       resources :categories, only: [:index]
+      resources :users, only: [:update]
+      get 'user_detail', to: 'users#detail'
     end
   end
 end
