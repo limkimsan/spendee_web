@@ -15,7 +15,7 @@
           <div class="d-flex flex-flow justify-content-between mb-3">
             <h5 class="card-title">
               <b>
-                <%= transaction.currency_type == "rield" ? "Riel" : "USD" %> <%= transaction.amount %>
+                <%= transaction.currency_type == "khr" ? "Riel" : "USD" %> <%= number_to_currency(transaction.amount, unit: '') %>
               </b>
             </h5>
             <div><span class="badge text-bg-<%= transaction.transaction_type == "income" ? "success" : "danger" %>"><%= transaction.transaction_type %></span></div>
