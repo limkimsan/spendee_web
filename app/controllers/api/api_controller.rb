@@ -36,7 +36,6 @@ module Api
 
     def handling_exceptions(e)
       exception = if e.is_a?(::V1::Exceptions::Error)
-        e
       else
         Rails.logger.error { "Internal Server Error: #{e.message} #{e.backtrace.join("\n")}" }
 
