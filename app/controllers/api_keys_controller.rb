@@ -3,10 +3,12 @@ class ApiKeysController < ApplicationController
 
   def index
     @api_keys = authorize ApiKey.filter(filter_params)
+    @active_link = 'api_keys'
   end
 
   def new
     @api_key = authorize ApiKey.new
+    @active_link = 'api_keys'
   end
 
   def create
@@ -22,6 +24,7 @@ class ApiKeysController < ApplicationController
   end
 
   def edit
+    @active_link = 'api_keys'
   end
 
   def update
