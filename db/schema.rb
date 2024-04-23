@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_175011) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_22_171352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_175011) do
     t.string "icon_type"
     t.string "icon_color"
     t.string "bg_color"
+    t.string "name_km"
   end
 
   create_table "oauth_access_grants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
