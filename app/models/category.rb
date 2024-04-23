@@ -16,6 +16,7 @@
 class Category < ApplicationRecord
   validates :name, presence: true
   validates :transaction_type, presence: true
+  validates :name_km, presence: true
 
   enum transaction_type: {
     income: 0,
