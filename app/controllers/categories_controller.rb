@@ -48,7 +48,7 @@ class CategoriesController < ApplicationController
 
   private
   def category_params
-    params.require(:category).permit(:name, :transaction_type, :order, :icon, :icon_type, :icon_color, :bg_color)
+    params.require(:category).permit(:name, :name_km, :transaction_type, :order, :icon, :icon_type, :icon_color, :bg_color)
   end
 
   def set_category
