@@ -7,14 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if logged_in? && current_user.primary_admin? %>
-          <%= link_to "Users", users_path, class: "nav-link active" %>
-          <%= link_to "Categories", categories_path, class: "nav-link active" %>
-          <%= link_to "API Keys", api_keys_path, class: "nav-link" %>
+          <%= link_to "Users", users_path, class: "nav-link #{@active_link == 'users' ? 'nav-link-active' : ''}" %>
+          <%= link_to "Categories", categories_path, class: "nav-link #{@active_link == 'categories' ? 'nav-link-active' : ''}" %>
+          <%= link_to "API Keys", api_keys_path, class: "nav-link #{@active_link == 'api_keys' ? 'nav-link-active' : ''}" %>
         <% end %>
-        <%= link_to "Transactions", transactions_path, class: "nav-link" %>
+        <%# current_page is making comparision with the current url that we are visiting %>
+        <%#= link_to "Transactions", transactions_path, class: "nav-link #{(current_page?(transactions_path) ? 'nav-link-active' : '')}" %>
+        <%= link_to "Transactions", transactions_path, class: "nav-link #{@active_link == 'transactions' ? 'nav-link-active' : ''}" %>
         <% if logged_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link <%= (current_page?(edit_user_path(current_user)) ? 'nav-link-active' : '') %> dropdown-toggle"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            >
               Profile
             </a>
             <ul class="dropdown-menu">

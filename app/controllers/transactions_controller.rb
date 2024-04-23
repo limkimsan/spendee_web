@@ -5,6 +5,7 @@ class TransactionsController < ApplicationController
   def index
     # @transactions = Transaction.find_by(user_id: current_user)
     @transactions = Transaction.all
+    @active_link = 'transactions'
   end
 
   def show
@@ -12,6 +13,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @active_link = 'transactions'
   end
 
   def create
@@ -27,6 +29,7 @@ class TransactionsController < ApplicationController
 
   def edit
     authorize User
+    @active_link = 'transactions'
   end
 
   def update

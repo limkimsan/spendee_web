@@ -5,11 +5,13 @@ class CategoriesController < ApplicationController
   def index
     authorize User
     @categories = Category.all
+    @active_link = 'categories'
   end
 
   def new
     authorize User
     @category = Category.new
+    @active_link = 'categories'
   end
 
   def create
@@ -29,6 +31,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    @active_link = 'categories'
   end
 
   def update

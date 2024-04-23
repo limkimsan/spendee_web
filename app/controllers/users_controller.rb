@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
+    @active_link = 'users'
   end
 
   def show
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
   def new
     authorize User
     @user = User.new
+    @active_link = 'users'
   end
 
   def create
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @active_link = 'users'
   end
 
   def update
